@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+/*@import '../node_modules/alertifyjs/build/css/alertify.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';*/
+
+/*CSS pour AdminTLE */
+@import'../node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css';
+@import'../node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import'../node_modules/admin-lte/plugins/jqvmap/jqvmap.min.css';
+@import'./assets/dist/css/adminlte.min.css';
+@import'../node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css';
+@import'../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css';
+
+
+
+/*CSS For bootstrap 4.6*/
+@import'../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+
+/* ngx-bootstrap */
+/*@import'../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';*/
+
+
+
+/*ngx-summernote*/
+/*@import"../node_modules/summernote/dist/summernote-lite.min.css";*/
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

@@ -16,7 +16,8 @@ const routes: Routes = [
       {path:'login',component:LoginComponent},
       {path: 'creer-user', component:CreerUtilisateurComponent},
       {path: 'editer-user', component:EditerIncidentComponent},
-      {path: 'liste-user', component:ListeUtilisateurComponent}
+      {path: 'liste-user', component:ListeUtilisateurComponent},
+      {path: '', redirectTo: 'login',pathMatch: 'full'}
     ]
 }];
 

@@ -9,13 +9,15 @@ import { CreerUtilisateurComponent } from './creer-utilisateur/creer-utilisateur
 import { EditerUtilisateurComponent } from './editer-utilisateur/editer-utilisateur.component';
 
 
+
 @NgModule({
   declarations: [
     AccueilComponent,
     LoginComponent,
     ListeUtilisateurComponent,
     CreerUtilisateurComponent,
-    EditerUtilisateurComponent
+    EditerUtilisateurComponent,
+   
   ],
   imports: [
     CommonModule,
