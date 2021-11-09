@@ -8,7 +8,7 @@
   <div class="row">     
        <div class="col-2 col-md-2 col-sm-2">
        <div class="input-group mb-2">
-         <button class="btn btn-primary" [routerLink]="['/dashboard/creer-zone']" routerLinkActive="router-link-active" >
+         <button class="btn btn-primary" [routerLink]="['/parametre/creer-district']" routerLinkActive="router-link-active" >
               nouveau district
          </button>
        </div>
@@ -24,12 +24,9 @@
           (change)="getalldistrictParZone()">
             <option value="" disabled> Choisir une zone</option>
             <option *ngFor="let zone of datazone" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
-          </select>
-    
-     
-        <button class="btn btn-success m-2" (click) = "actualiser()">Actualiser</button>
-
-      </div>
+          </select>   
+          <button class="btn btn-success m-2" (click) = "actualiser()">Actualiser</button>
+        </div>
    
      </div>    
      

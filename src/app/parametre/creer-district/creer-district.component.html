@@ -1,1 +1,72 @@
-<p>creer-district works!</p>
+<div class="row">
+  
+    <div class="col-11 col-md-11 col-sm-10 col-xl-11">
+
+     <div class="card">
+         <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="card-title">Nouveau district</h3> <br>
+                </div>
+
+                <div class="col-6 col-sm-6 ">
+                    <span class="float-right"><a href="" [routerLink]="['/parametre/liste-district']" routerLinkActive="router-link-active" >Liste des districts</a></span> 
+                </div>
+            
+            </div>
+         </div>
+
+    <div class="card-body pad">
+
+        <form [formGroup]="creerDistrict" (ngSubmit)="newDistrict()" class="form-group">
+            <div class="row">
+                <div class="col-12 col-sm-12">             
+
+                    <label for="">Libelle du district</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2" type="text" name="libelle_district" formControlName="libelle_district">                   
+                    </div>  
+                    
+                    <label for="">Longitude district</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 "  type="text" name="longitude_district" formControlName="longitude_district">                   
+                    </div> 
+
+                    <label for="">Latitude district</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 "  type="text" name="latitude_district" formControlName="latitude_district">                   
+                    </div>                    
+                        
+                    <label for="">zone du district</label> 
+                    <div class="input-group"> 
+                        <select class="form-control mt-2 mb-2" name="code_zone" formControlName="code_zone"
+                        (change)="getallZone()">
+                          <option value="" disabled> Choisir une zone</option>
+                          <option *ngFor="let zone of datazones" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
+                        </select> 
+                    </div>  
+                    
+                               
+                 
+                </div>
+            </div>
+             
+                <div class="row">
+              
+                    <div class="col-6 col-sm-6">              
+                            <button [disabled]="!creerDistrict.valid" type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>                    
+                 </div>
+                  
+              
+                    
+        </form>
+
+    </div>
+
+
+     </div>
+
+    </div>
+
+  </div>

@@ -3,6 +3,7 @@ import { Zone } from 'src/app/share/models/zone';
 import { ParametreService } from 'src/app/share/services/parametre.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import { AlertifyService } from 'src/app/share/services/alertify.service';
 
 @Component({
   selector: 'app-liste-zone',
@@ -21,7 +22,8 @@ export class ListeZoneComponent implements OnInit {
   constructor(
     private route : Router,
     private parametreservice: ParametreService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private alertifyservice: AlertifyService) { }
 
   ngOnInit(): void {
       this.getallzone()
@@ -46,12 +48,27 @@ export class ListeZoneComponent implements OnInit {
 
 
   confirm(){
-
+   return this.parametreservice.deletedZone(this.code).subscribe(
+     ( response: string)=>{
+       if(response == "200") {
+        this.alertifyservice.success("Suppression effectuée avec success !");
+        this.modalRef?.hide();
+        this.refeshComponent();
+       }
+       
+     }
+   );
   }
 
 
-  decline(){
+  decline(): void{
+    this.modalRef?.hide();
+  }
 
+
+  refeshComponent(){
+    this.route.navigateByUrl('/parametre/blank-parametre', { skipLocationChange: true })
+    .then(() => { this.route.navigate(['/parametre/liste-zone']); });
   }
 
 

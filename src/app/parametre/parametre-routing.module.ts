@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
+import { BlankParametreComponent } from './blank-parametre/blank-parametre.component';
 import { CreerDepartementComponent } from './creer-departement/creer-departement.component';
 import { CreerDistrictComponent } from './creer-district/creer-district.component';
 import { CreerRegionComponent } from './creer-region/creer-region.component';
@@ -34,8 +35,10 @@ const routes: Routes = [
 
      {path: 'liste-departement', component:ListeDepartementComponent},
      {path: 'creer-departement', component:CreerDepartementComponent},
-     {path: 'editer-departement', component: EditerDepartementComponent}
+     {path: 'editer-departement', component: EditerDepartementComponent},
      
+
+     {path:'blank-parametre', component:BlankParametreComponent}
 
 
 
