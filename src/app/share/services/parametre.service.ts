@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Departement } from '../models/departement';
@@ -26,6 +26,12 @@ export class ParametreService {
     return this.http.post(this._url + '/zones/add/', newzone );
    }
 
+
+  deletedZone(code_zone: string): Observable<string>{
+    return this.http.delete<string>(this._url + '/zones/one/' + code_zone);
+   }
+
+
    
    //#endregion
 
@@ -42,6 +48,15 @@ export class ParametreService {
   getAllDistrictsParZone(code_zone: string): Observable<District[]>{
     return this.http.get<District[]>(this._url + '/districts/all/zones/' + code_zone );
   }
+
+  postDistrict(newDistrict : any){
+
+    let httpHeader = new HttpHeaders();
+    httpHeader.append('Content-Type','application/json; charset=utf-8');
+    httpHeader.append('Transfer-Encoding','chunked');
+    
+    return this.http.post(this._url + '/districts/add/', newDistrict, );
+   }
    
   //#endregion
 
@@ -77,16 +92,17 @@ export class ParametreService {
      return this.http.get<Departement[]>(this._url + '/departements/all')
    }
 
-
    getAllDepatrtementsParRegion(code_region : string):Observable<Departement[]>{
     return this.http.get<Departement[]>(this._url + '/departements/all/regions/' + code_region );
   }
-
-
   
   getAllDepatrtementsParZone(code_zone : string):Observable<Departement[]>{
     return this.http.get<Departement[]>(this._url + '/departements/all/zones/' + code_zone );
   }
+
+
+ 
+
 
 
   //#endregion
