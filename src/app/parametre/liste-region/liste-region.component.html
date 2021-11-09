@@ -1,0 +1,120 @@
+
+<div class="row">
+    <div class="col-12 col-md-12 col-sm-12">
+     <span><label for="">Liste des regions</label></span>
+   </div>
+</div>
+
+     
+  <div class="row">     
+       <div class="col-4 col-md-4 col-sm-4">
+       <div class="input-group mb-2">
+         <button class="btn btn-primary" [routerLink]="['/parametre/creer-zone']" routerLinkActive="router-link-active" >
+              nouvelle region
+         </button>
+       </div>
+     </div> 
+   
+  </div>
+  <div class="row ">
+    <div class="col-md-10 col-sm-10">
+     <div class="form-group">
+
+      <div class="input-group">
+          
+          <label  class="m-2 " for="">Rechercher par district </label>        
+          <select class="form-control mt-2" name="code_district" [(ngModel)]="code_district"
+          (change)="getallregionParDistrict()">
+            <option value="" disabled>Choisir un district</option>
+            <option *ngFor="let district of datadistrict" value="{{district.code_district}}">{{district.libelle_district}}</option>
+          </select>    
+          
+          <label for=""  class="m-3 mt-2" > -- Ou -- </label>
+     
+  
+          <label  class="m-2" for="">Rechercher par zone </label>
+          <select class="form-control mt-2" name="zone" [(ngModel)]="code_zone"
+          (change)="getallregionParZone()">
+            <option value="" disabled> Choisir une zone</option>
+            <option *ngFor="let zone of datazone" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
+          </select>
+    
+     
+        <button class="btn btn-success m-2" (click) = "actualiser()">Actualiser</button>
+
+      </div>
+   
+     </div>    
+     
+    </div>
+  </div>
+   
+   <div class="row">
+  
+     <div class=" col-10 col-md-10 col-sm-10">
+       <div class="table-responsive">
+
+        <table  class="table table-hover table-sm">
+          <thead class="thead-dark ">
+            <tr>
+              <th scope="col">Code .</th>
+              <th scope="col">Libellé</th>  
+              <th scope="col">Longitude</th>  
+              <th scope="col">Latitude</th>  
+              <th scope="col">district</th>  
+              <th scope="col">zone</th>  
+              <th scope="col"></th>                      
+            </tr>
+          </thead>
+
+          <tbody>  
+              <tr  *ngFor="let region of dataregion">               
+                  <td><span>{{region.code_region}}</span></td>                  
+                  <td>{{region.libelle_region}}</td>  
+                  <td>{{region.longitude_region}}</td>   
+                  <td>{{region.latitude_region}}</td>                 
+                   <td>{{region.district.libelle_district}}</td>
+                   
+                           
+                  <td>
+                      <tr class="float-right bg-transparent"> 
+                        <td class="liste"> 
+                          <button type="submit" [routerLink]="['/dashboard/editer-region', region.code_region]"
+                          routerLinkActive="router-link-active"
+                          class="btn btn-success btn-xs">Editer</button>
+                        </td>
+                       <td class="liste">
+                          <button type="button" 
+                            routerLinkActive="router-link-active"  
+                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,region.code_region)">Supprimer</button> 
+                        </td>
+                      </tr>                   
+                  </td> 
+                </tr> 
+                <tr>
+                    <th scope="col">Code .</th>
+                    <th scope="col">Libellé</th>  
+                    <th scope="col">Longitude</th>  
+                    <th scope="col">Latitude</th>  
+                    <th scope="col">district</th>
+                    <th scope="col">zone</th>    
+                    <th scope="col"></th>      
+                </tr>  
+          </tbody>
+        </table>
+  
+  
+  
+     
+       <ng-template #templatesup>
+            <div class="modal-body text-center">
+              <p>Voulez-vous supprimer la zone avec pour <b>code</b> : <span class="text-info">{{code}}</span> </p>
+              <button type="button" class="btn btn-default" (click)="confirm()">Oui</button>
+              <button type="button" class="btn btn-primary" (click)="decline()">Non</button>
+            </div>
+        </ng-template>
+       </div>
+     </div>
+  
+   </div>
+  

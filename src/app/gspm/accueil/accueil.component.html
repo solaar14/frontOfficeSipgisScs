@@ -1,3 +1,31 @@
+<div class="wrapper hold-transition sidebar-mini layout-fixed">
+  
+        <app-topnavbar></app-topnavbar>
+        <app-asidenavbar></app-asidenavbar> 
+  
 
-    <router-outlet></router-outlet>
+<!-- Main content -->
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+              <!-- Small boxes (Stat box) -->
+              <!--  <app-accueil [nombreArticle]="accueilarticle"></app-accueil>   -->
+             
+           
+                <router-outlet></router-outlet>
+                           
+        </div>
+    </section>    
+    
+
+</div> 
+
+
+    <app-footernavbar></app-footernavbar>
+
+
+</div>
+
+
+
 

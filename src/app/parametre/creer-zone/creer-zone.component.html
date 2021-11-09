@@ -1,0 +1,55 @@
+<div class="row">
+  
+    <div class="col-11">
+
+     <div class="card">
+         <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="card-title">Nouvelle zone</h3> <br>
+                </div>
+
+                <div class="col-6 col-sm-6 ">
+                    <span class="float-right"><a href="" [routerLink]="['/parametre/liste-zone']" routerLinkActive="router-link-active" >Liste des zones</a></span> 
+                </div>
+            
+            </div>
+         </div>
+
+    <div class="card-body pad">
+
+        <form [formGroup]="creerZone" (ngSubmit)="newZone()" class="form-group">
+            <div class="row">
+                <div class="col-12 col-sm-12">  
+
+                    <label for="">code de la zone</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 uppercase"  type="text" name="code_zone" formControlName="code_zone">                   
+                    </div> 
+
+                    <label for="">libelle de la zone</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 uppercase" type="text" name="libelle_zone" formControlName="libelle_zone">                   
+                    </div>                    
+                    
+                </div>
+            </div>
+             
+                <div class="row">
+                    <div class="col-6 col-sm-6">              
+                            <button [disabled]="!creerZone.valid" type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>                    
+                 </div>
+                  
+              
+                    
+        </form>
+
+    </div>
+
+
+     </div>
+
+    </div>
+
+  </div>

@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-12 col-md-12 col-sm-12">
+      <label for="">Liste des zones</label>
+   </div>
+</div>
+     
+  <div class="row">     
+       <div class="col-2 col-md-2 col-sm-2">
+       <div class="input-group mb-2">
+         <button class="btn btn-primary" [routerLink]="['/parametre/creer-zone']" routerLinkActive="router-link-active" >
+              Nouvelle zone
+         </button>
+       </div>
+     </div> 
+   
+  </div>
+   
+   <div class="row">
+  
+     <div class=" col-8">
+       <div class="table-responsive">
+
+        <table  class="table table-hover table-sm">
+          <thead class="thead-dark ">
+            <tr>
+              <th scope="col">Code .</th>
+              <th scope="col">Libellé</th>   
+              <th scope="col"></th>                      
+            </tr>
+          </thead>
+
+          <tbody>  
+              <tr  *ngFor="let zone of datazone">               
+                  <td><span>{{zone.code_zone}}</span></td>                  
+                  <td>{{zone.libelle_zone}}</td>               
+                  <td>
+                      <tr class="float-right bg-transparent"> 
+                        <td class="liste"> 
+                          <button type="submit" [routerLink]="['/dashboard/editer-zone', zone.code_zone]"
+                          routerLinkActive="router-link-active"
+                          class="btn btn-success btn-xs">Editer</button>
+                        </td>
+                       <td class="liste">
+                          <button type="button" 
+                            routerLinkActive="router-link-active"  
+                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,zone.code_zone)">Supprimer</button> 
+                        </td>
+                      </tr>                   
+                  </td> 
+                </tr> 
+                <tr>
+                  <th scope="col">Code .</th>
+                  <th scope="col">Libellé</th>  
+                  <th scope="col"></th>    
+                </tr>  
+          </tbody>
+        </table>
+  
+  
+  
+     
+       <ng-template #templatesup>
+            <div class="modal-body text-center">
+              <p>Voulez-vous supprimer la zone avec pour <b>code</b> : <span class="text-info">{{code}}</span> </p>
+              <button type="button" class="btn btn-default" (click)="confirm()">Oui</button>
+              <button type="button" class="btn btn-primary" (click)="decline()">Non</button>
+            </div>
+        </ng-template>
+       </div>
+     </div>
+  
+   </div>
+  
