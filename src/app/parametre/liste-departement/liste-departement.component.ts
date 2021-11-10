@@ -6,6 +6,7 @@ import { ParametreService } from 'src/app/share/services/parametre.service';
 import { Zone } from 'src/app/share/models/zone';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-liste-departement',
@@ -26,6 +27,8 @@ public code_zone : string = "";
 public code_district: string = "";
 public code_region : string = "";
 
+public currentPage = 4;
+public page?: number;
 
   constructor(
     private route : Router,
@@ -117,6 +120,10 @@ public code_region : string = "";
   decline(){}
 
 
+
+  pageChanged(event: PageChangedEvent): void {
+    this.page = event.page;
+  }
 
 
 
