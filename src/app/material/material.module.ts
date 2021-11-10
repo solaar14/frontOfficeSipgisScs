@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 const MaterialComponent = [
   MatButtonModule,
-  MatTableModule
+  MatTableModule,
+  PaginationModule
+
 ]
 
 
