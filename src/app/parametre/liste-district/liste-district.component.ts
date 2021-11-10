@@ -4,6 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { District } from 'src/app/share/models/district';
 import { ParametreService } from 'src/app/share/services/parametre.service';
 import { Zone} from'src/app/share/models/zone';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-liste-district',
@@ -20,7 +21,8 @@ export class ListeDistrictComponent implements OnInit {
   public code_district : string = "";
   public code_zone : string = "";
 
-
+  public currentPage = 4;
+  public page?: number;
 
 
   constructor( 
@@ -97,7 +99,11 @@ export class ListeDistrictComponent implements OnInit {
   }
 
 
-
+ 
+ 
+  pageChanged(event: PageChangedEvent): void {
+    this.page = event.page;
+  }
 
   
 
