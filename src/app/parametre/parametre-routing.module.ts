@@ -26,11 +26,11 @@ const routes: Routes = [
 
      {path: 'liste-district', component: ListeDistrictComponent},
      {path: 'creer-district', component: CreerDistrictComponent},
-     {path: 'editer-district', component: EditerDistrictComponent},
+     {path: 'editer-district/:code', component: EditerDistrictComponent},
 
      {path: 'liste-region', component: ListeRegionComponent},
      {path: 'creer-region', component: CreerRegionComponent},
-     {path: 'editer-region', component: EditerRegionComponent},
+     {path: 'editer-region/:code', component: EditerRegionComponent},
 
 
      {path: 'liste-departement', component:ListeDepartementComponent},

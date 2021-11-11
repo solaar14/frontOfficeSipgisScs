@@ -24,23 +24,35 @@
 
                     <label for="">Libelle du district</label> 
                     <div class="input-group">                         
-                        <input   class="form-control mb-2" type="text" name="libelle_district" formControlName="libelle_district">                   
+                        <input   class="form-control mb-2" type="text"  name="libelle_district" formControlName="libelle_district">                   
                     </div>  
                     
                     <label for="">Longitude district</label> 
                     <div class="input-group">                         
                         <input   class="form-control mb-2 "  type="text" name="longitude_district" formControlName="longitude_district">                   
                     </div> 
+                    
+                    <div class="input-group mb-2">
+                        <div *ngIf="creerDistrict.get('longitude_district')?.errors">
+                            <span class="text-danger">Entrer une valeur numérique</span>
+                        </div>
+                    </div>
+                  
 
                     <label for="">Latitude district</label> 
                     <div class="input-group">                         
-                        <input   class="form-control mb-2 "  type="text" name="latitude_district" formControlName="latitude_district">                   
-                    </div>                    
+                        <input   class="form-control mb-2 "  type="text"  name="latitude_district" formControlName="latitude_district">                   
+                    </div>  
+                    <div class="input-group mb-2">
+                        <div *ngIf="creerDistrict.get('latitude_district')?.errors">
+                            <span class="text-danger">Entrer une valeur numérique</span>
+                        </div>
+                    </div>
+
                         
                     <label for="">zone du district</label> 
                     <div class="input-group"> 
-                        <select class="form-control mt-2 mb-2" name="code_zone" formControlName="code_zone"
-                        (change)="getallZone()">
+                        <select class="form-control mt-2 mb-2" name="code_zone" formControlName="code_zone">
                           <option value="" disabled> Choisir une zone</option>
                           <option *ngFor="let zone of datazones" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
                         </select> 

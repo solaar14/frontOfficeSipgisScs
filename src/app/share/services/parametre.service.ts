@@ -45,18 +45,39 @@ export class ParametreService {
   return this.http.get<District[]>(this._url + '/districts/all');
   }
 
+ getOneDistrict(code_district:string){
+   return this.http.get<District>(this._url + '/districts/one/' + code_district);
+ }
+ 
+ updateDistrict(newdistrict : District,code_district: string){
+   return this.http.put<District>(this._url + '/districts/update/' + code_district, newdistrict )
+ }
+
+
+
   getAllDistrictsParZone(code_zone: string): Observable<District[]>{
     return this.http.get<District[]>(this._url + '/districts/all/zones/' + code_zone );
   }
 
   postDistrict(newDistrict : any){
-
     let httpHeader = new HttpHeaders();
     httpHeader.append('Content-Type','application/json; charset=utf-8');
     httpHeader.append('Transfer-Encoding','chunked');
     
-    return this.http.post(this._url + '/districts/add/', newDistrict, );
+    return this.http.post(this._url + '/districts/add/', newDistrict, {headers:httpHeader} );
    }
+
+
+   deletedDistrict(code_district : string){
+    let httpHeader = new HttpHeaders();
+    httpHeader.append('Content-Type','application/json; charset=utf-8');
+    httpHeader.append('Transfer-Encoding','chunked');
+    return this.http.delete(this._url + '/districts/one/' + code_district, {headers:httpHeader})
+
+   }
+
+
+
    
   //#endregion
 
@@ -99,10 +120,6 @@ export class ParametreService {
   getAllDepatrtementsParZone(code_zone : string):Observable<Departement[]>{
     return this.http.get<Departement[]>(this._url + '/departements/all/zones/' + code_zone );
   }
-
-
- 
-
 
 
   //#endregion

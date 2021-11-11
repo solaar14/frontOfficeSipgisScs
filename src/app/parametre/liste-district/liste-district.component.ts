@@ -5,6 +5,7 @@ import { District } from 'src/app/share/models/district';
 import { ParametreService } from 'src/app/share/services/parametre.service';
 import { Zone} from'src/app/share/models/zone';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { AlertifyService } from 'src/app/share/services/alertify.service';
 
 @Component({
   selector: 'app-liste-district',
@@ -28,7 +29,8 @@ export class ListeDistrictComponent implements OnInit {
   constructor( 
     private route : Router,
     private parametreservice: ParametreService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private alertifyservice: AlertifyService) { }
 
 
 
@@ -90,12 +92,22 @@ export class ListeDistrictComponent implements OnInit {
 
 
   confirm(){
-
+    this.parametreservice.deletedDistrict(this.code).subscribe(
+      ()=>{
+        this.alertifyservice.success("suppression effectuée avec success !")
+       
+        this.modalRef?.hide();
+        this.refeshComponent();
+      }
+    )
+  
+  
   }
 
 
   decline(){
-
+    this.modalRef?.hide();
+    this.refeshComponent();
   }
 
 
@@ -106,6 +118,13 @@ export class ListeDistrictComponent implements OnInit {
   }
 
   
+
+  refeshComponent(){
+    this.route.navigateByUrl('/parametre/blank-parametre', { skipLocationChange: true })
+    .then(() => { this.route.navigate(['/parametre/liste-district']); });
+  }
+
+
 
 
 
