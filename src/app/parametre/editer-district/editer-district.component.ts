@@ -38,10 +38,10 @@ export class EditerDistrictComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-        this.sub = this.route_active.params.subscribe(param=>
+  this.sub = this.route_active.params.subscribe(param=>
           {this.code =  param['code']; })
-          this.getallzone();
 
+          this.getallzone();
           this.afficherDistrict();
           
 }

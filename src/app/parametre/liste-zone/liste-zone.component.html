@@ -36,15 +36,20 @@
                   <td>
                       <tr class="float-right bg-transparent"> 
                         <td class="liste"> 
-                          <button type="submit" [routerLink]="['/dashboard/editer-zone', zone.code_zone]"
+                          <button type="submit" [routerLink]="['/parametre/editer-zone', zone.code_zone]"
                           routerLinkActive="router-link-active"
-                          class="btn btn-success btn-xs">Editer</button>
+                          class="btn btn-success btn-xs">
+                          <i class="fas fa-edit"></i>                         
+                          </button>
                         </td>
                        <td class="liste">
+
                           <button type="button" 
                             routerLinkActive="router-link-active"  
-                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,zone.code_zone)">Supprimer</button> 
-                        </td>
+                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,zone.code_zone)">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                          </td>
                       </tr>                   
                   </td> 
                 </tr> 

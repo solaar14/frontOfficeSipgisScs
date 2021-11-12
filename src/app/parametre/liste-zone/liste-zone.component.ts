@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Zone } from 'src/app/share/models/zone';
 import { ParametreService } from 'src/app/share/services/parametre.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/app/share/services/alertify.service';
 
 @Component({
@@ -14,7 +14,6 @@ export class ListeZoneComponent implements OnInit {
 
   public code: string = "";
   public modalRef?: BsModalRef;
-
   public datazone: Zone[] = [];
 
 
@@ -54,6 +53,10 @@ export class ListeZoneComponent implements OnInit {
         this.alertifyservice.success("Suppression effectuée avec success !");
         this.modalRef?.hide();
         this.refeshComponent();
+       }else{
+         console.error(response);
+         
+         
        }
        
      }

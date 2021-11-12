@@ -22,7 +22,7 @@ const routes: Routes = [
      
      {path: 'liste-zone', component: ListeZoneComponent},
      {path: 'creer-zone', component: CreerZoneComponent},
-     {path: 'editer-zone', component: EditerZoneComponent},
+     {path: 'editer-zone/:code', component: EditerZoneComponent},
 
      {path: 'liste-district', component: ListeDistrictComponent},
      {path: 'creer-district', component: CreerDistrictComponent},

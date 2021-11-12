@@ -26,10 +26,20 @@ export class ParametreService {
     return this.http.post(this._url + '/zones/add/', newzone );
    }
 
-
   deletedZone(code_zone: string): Observable<string>{
     return this.http.delete<string>(this._url + '/zones/one/' + code_zone);
    }
+
+
+   getOneZone(code_zone: string): Observable<Zone>{
+    return this.http.get<Zone>(this._url + '/zones/one/'+ code_zone );
+   }
+
+
+   updateOneZone(code_zone: string, newzone: any){
+      return this.http.put(this._url + '/zones/update/'+ code_zone, newzone);
+   }
+
 
 
    
