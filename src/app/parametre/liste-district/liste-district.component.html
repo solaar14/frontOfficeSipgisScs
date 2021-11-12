@@ -26,7 +26,9 @@
             <option value="" disabled> Choisir une zone</option>
             <option *ngFor="let zone of datazone" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
           </select>   
-          <button class="btn btn-success m-2" (click) = "actualiser()">Actualiser</button>
+          <button class="btn btn-success m-2" (click) = "actualiser()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
         </div>
    
      </div>    
@@ -64,12 +66,17 @@
                         <td class="liste"> 
                           <button type="submit" [routerLink]="['/parametre/editer-district', district.code_district]"
                           routerLinkActive="router-link-active"
-                          class="btn btn-success btn-xs">Editer</button>
+                          class="btn btn-success btn-xs">
+                          <i class="fas fa-edit"></i> 
+                        </button>
                         </td>
                        <td class="liste">
                           <button type="button" 
                             routerLinkActive="router-link-active"  
-                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,district.code_district)">Supprimer</button> 
+                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,district.code_district)">
+                            <i class="fas fa-trash"></i>
+                           
+                          </button> 
                         </td>
                       </tr>                   
                   </td> 
@@ -103,14 +110,14 @@
      <div class="col-md-6 col-sm-6 col-xl-10">
     
       <div class="row">
-        <div class="col-xs-12 col-12">
-          <pagination [totalItems]="66" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+        <div class="col-md-12 col-xs-10 col-sm-12">
+          <pagination class="float-right" [totalItems]="totalpage" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
         </div>
       </div>
        
-      <pre class="card card-block card-header mb-3">
+       <!--   <pre class="card card-block card-header mb-3">
         Page changed to: {{page}}
-      </pre>
+      </pre> -->
    
    
     </div>

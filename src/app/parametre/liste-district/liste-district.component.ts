@@ -22,8 +22,9 @@ export class ListeDistrictComponent implements OnInit {
   public code_district : string = "";
   public code_zone : string = "";
 
-  public currentPage = 4;
-  public page?: number;
+  public currentPage: number = 1;
+ // public page?: number;
+  public totalpage : number = 0;
 
 
   constructor( 
@@ -35,7 +36,7 @@ export class ListeDistrictComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getalldistrict();
+    this.getalldistrict();   
     this.getallzone();
   }
 
@@ -47,12 +48,23 @@ export class ListeDistrictComponent implements OnInit {
   }
 
 
+  getalldistrict(){
+    return this.parametreservice.getAllDistricts().subscribe(
+      (response: District[])=>{
+        this.totalpage = response.length;
+        this.getallparpagedistrict(this.currentPage);
+       
+      }
+    )
+  }
+
+
 
   
 
 
-  getalldistrict(){
-    return this.parametreservice.getAllDistricts().subscribe(
+  getallparpagedistrict(index : number){
+    return this.parametreservice.getAllPageDistricts(index).subscribe(
       (response: District[])=>{
         this.datadistrict = response;
       }
@@ -76,7 +88,6 @@ export class ListeDistrictComponent implements OnInit {
     
       }
     )
-
   }
 
 
@@ -114,7 +125,9 @@ export class ListeDistrictComponent implements OnInit {
  
  
   pageChanged(event: PageChangedEvent): void {
-    this.page = event.page;
+    this.currentPage = event.page;  
+     this.getallparpagedistrict(this.currentPage)
+    
   }
 
   

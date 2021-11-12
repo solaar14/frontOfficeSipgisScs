@@ -44,6 +44,9 @@ export class ParametreService {
   getAllDistricts(): Observable<District[]>{
   return this.http.get<District[]>(this._url + '/districts/all');
   }
+  getAllPageDistricts(current_page: number): Observable<District[]>{
+    return this.http.get<District[]>(this._url + '/districts/all/page?pagenumber='+  current_page );
+    }
 
  getOneDistrict(code_district:string){
    return this.http.get<District>(this._url + '/districts/one/' + code_district);
@@ -52,7 +55,6 @@ export class ParametreService {
  updateDistrict(newdistrict : District,code_district: string){
    return this.http.put<District>(this._url + '/districts/update/' + code_district, newdistrict )
  }
-
 
 
   getAllDistrictsParZone(code_zone: string): Observable<District[]>{
