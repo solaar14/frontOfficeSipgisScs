@@ -9,7 +9,7 @@
   <div class="row">     
        <div class="col-2 col-md-2 col-sm-2">
        <div class="input-group mb-2">
-         <button class="btn btn-primary" [routerLink]="['/dashboard/creer-departement']" routerLinkActive="router-link-active" >
+         <button class="btn btn-primary" [routerLink]="['/parametre/creer-departement']" routerLinkActive="router-link-active" >
               nouveau departement
          </button>
        </div>
@@ -42,7 +42,7 @@
 
 
      
-        <button class="btn btn-success m-2" (click) = "actualiser()">Actualiser</button>
+        <button class="btn btn-success m-2" (click) = "actualiser()"><i class="fas fa-sync-alt"></i></button>
 
       </div>
    
@@ -88,14 +88,18 @@
                   <td>
                       <tr class="float-right bg-transparent"> 
                         <td class="liste"> 
-                          <button type="submit" [routerLink]="['/dashboard/editer-deparetement', departement.code_departement]"
+                          <button type="submit" [routerLink]="['/parametre/editer-departement', departement.code_departement]"
                           routerLinkActive="router-link-active"
-                          class="btn btn-success btn-xs">Editer</button>
+                          class="btn btn-success btn-xs">
+                          <i class="fas fa-edit"></i> 
+                        </button>
                         </td>
                        <td class="liste">
                           <button type="button" 
                             routerLinkActive="router-link-active"  
-                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,departement.code_departement)">Supprimer</button> 
+                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,departement.code_departement)">
+                          <i class="fas fa-trash"></i>
+                          </button> 
                         </td>
                       </tr>                   
                   </td> 
@@ -134,18 +138,19 @@
    
    <div class="row">
     <div class="col-md-6 col-sm-6 col-xl-10">
-    
-      <div class="row">
-        <div class="col-xs-12 col-12">
-          <pagination [totalItems]="66" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
-        </div>
-      </div>
-       
-      <pre class="card card-block card-header mb-3">
-        Page changed to: {{page}}
-      </pre>
    
-    </div>
+     <div class="row">
+       <div class="col-md-12 col-xs-10 col-sm-12">
+         <pagination *ngIf="totalpage > 0" class="float-right" [totalItems]="totalpage" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+       </div>
+     </div>
+      
+      <!--   <pre class="card card-block card-header mb-3">
+       Page changed to: {{page}}
+     </pre> -->
+  
+  
+   </div>
   </div>
 
   

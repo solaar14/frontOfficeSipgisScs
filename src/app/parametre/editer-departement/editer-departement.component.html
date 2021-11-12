@@ -1,1 +1,99 @@
-<p>editer-departement works!</p>
+<div class="row">
+  
+    <div class="col-11 col-md-11 col-sm-10 col-xl-11">
+
+     <div class="card">
+         <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="card-title">Modifier departement</h3> <br>
+                </div>
+
+                <div class="col-6 col-sm-6 ">
+                    <span class="float-right"><a href="" [routerLink]="['/parametre/liste-departement']" routerLinkActive="router-link-active" >Liste des districts</a></span> 
+                </div>
+            
+            </div>
+         </div>
+
+    <div class="card-body pad">
+
+        <form [formGroup]="creerDepartement" (ngSubmit)="modifierDepartement()" class="form-group">
+            <div class="row">
+                <div class="col-12 col-sm-12"> 
+
+                    <label for="">code du departement</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 uppercase" type="text"  name="code_departement" formControlName="code_departement">                   
+                    </div> 
+
+
+                    <label for="">Libelle du departement</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 uppercase" type="text"  name="libelle_departement" formControlName="libelle_departement">                   
+                    </div>  
+                    
+                    <label for="">Longitude departement</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 "  type="text" name="longitude_departement" formControlName="longitude_departement">                   
+                    </div> 
+                    
+                    <div class="input-group mb-2">
+                        <div *ngIf="creerDepartement.get('longitude_departement')?.errors">
+                            <span class="text-danger">Entrer une valeur numérique</span>
+                        </div>
+                    </div>
+                  
+
+                    <label for="">Latitude departement</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 "  type="text"  name="latitude_departement" formControlName="latitude_departement">                   
+                    </div>  
+                    <div class="input-group mb-2">
+                        <div *ngIf="creerDepartement.get('latitude_departement')?.errors">
+                            <span class="text-danger">Entrer une valeur numérique</span>
+                        </div>
+                    </div>
+
+
+                    <label for="">region du departement</label> 
+                    <div class="input-group"> 
+                        <select class="form-control mt-2 mb-2" name="code_region" formControlName="code_region">
+                          <option value="" disabled> Choisir une region</option>
+                          <option *ngFor="let region of dataregions" value={{region.code_region}}>{{region.libelle_region}}</option>
+                        </select> 
+                    </div>  
+
+                        
+                    <label for="">zone du departement</label> 
+                    <div class="input-group"> 
+                        <select class="form-control mt-2 mb-2" name="code_zone" formControlName="code_zone">
+                          <option value="" disabled> Choisir une zone</option>
+                          <option *ngFor="let zone of datazones" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
+                        </select> 
+                    </div>  
+                    
+                               
+                 
+                </div>
+            </div>
+             
+                <div class="row">
+              
+                    <div class="col-6 col-sm-6">              
+                            <button [disabled]="!creerDepartement.valid" type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>                    
+                 </div>
+                  
+              
+                    
+        </form>
+
+    </div>
+
+
+     </div>
+
+    </div>
+
+  </div>

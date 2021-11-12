@@ -23,7 +23,7 @@ export class ListeDistrictComponent implements OnInit {
   public code_zone : string = "";
 
   public currentPage: number = 1;
- // public page?: number;
+
   public totalpage : number = 0;
 
 

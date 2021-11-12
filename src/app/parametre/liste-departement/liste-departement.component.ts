@@ -7,6 +7,7 @@ import { Zone } from 'src/app/share/models/zone';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { AlertifyService } from 'src/app/share/services/alertify.service';
 
 @Component({
   selector: 'app-liste-departement',
@@ -29,11 +30,13 @@ public code_region : string = "";
 
 public currentPage = 4;
 public page?: number;
+public totalpage : number = 0;
 
   constructor(
     private route : Router,
     private parametreservice: ParametreService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private alertify: AlertifyService) { }
 
 
 
@@ -42,8 +45,7 @@ public page?: number;
 
   ngOnInit(): void {
     this.getallregion();
-    this.getallzone();
-    //this.getalldistrict();
+    this.getallzone(); 
     this.getalldepartement();
     }
 
@@ -60,7 +62,11 @@ public page?: number;
 
   getalldepartement(){
     return this.parametreservice.getAllDepatrtements().subscribe(
-      (response:Departement[])=> {this.datadepartements = response}
+      (response:Departement[])=> {
+        this.datadepartements = response;        
+        this.totalpage = response.length;
+         this.getallparpagedepartement(this.currentPage);
+        }
     )
   }
 
@@ -69,7 +75,7 @@ public page?: number;
     return this.parametreservice.getAllRegions().subscribe(
       (response:Region[])=>{
         this.dataregions = response;
-        })
+      })
   }
 
   
@@ -79,34 +85,46 @@ public page?: number;
     )
   }
 
+  getallparpagedepartement(index : number){
+    return this.parametreservice.getAllPageDepartements(index).subscribe(
+      (response: Departement[])=>{
 
-  getalldistrict(){
-    return this.parametreservice.getAllDistricts().subscribe(
-      (reponse: District[])=>{ 
-        this.datadistricts = reponse
-      
+        this.datadepartements = response;
+
       }
     )
   }
 
-
+  getalldistrict(){
+    return this.parametreservice.getAllDistricts().subscribe(
+      (reponse: District[])=>{ 
+        this.datadistricts = reponse      
+      }
+    )
+  }
 
   getalldepartementParRegion(){
     this.parametreservice.getAllDepatrtementsParRegion(this.code_region).subscribe(
       (response: Departement[])=>{
         this.datadepartements = response;
+       // this.totalpage = response.length;
+       // this.getallparpagedepartement(this.currentPage);
       }
     )
  }
 
-
-
  getalldepartementParZone(){
    this.parametreservice.getAllDepatrtementsParZone(this.code_zone).subscribe(
-     (response: Departement[])=> { this.datadepartements = response;}
+     (response: Departement[])=> { 
+       this.datadepartements = response;
+     //  this.totalpage = response.length;
+     //  this.getallparpagedepartement(this.currentPage);
+      
+      }
    )
  }
 
+ 
 
   actualiser(){
     this.getalldepartement();
@@ -115,14 +133,33 @@ public page?: number;
   }
 
 
-  confirm(){}
 
-  decline(){}
+  confirm(){
+    this.parametreservice.deletedDepartement(this.code).subscribe(
+      ()=>{
+       this.alertify.success('suppression effectuée avec success !');
+       this.modalRef?.hide();
+       this.refeshComponent();
+      }
+    )
+  }
+
+  decline(){
+    this.modalRef?.hide();
+  }
+
+
+
+  refeshComponent(){
+    this.route.navigateByUrl('/parametre/blank-parametre', { skipLocationChange: true })
+    .then(() => { this.route.navigate(['/parametre/liste-departement']); });
+  }
 
 
 
   pageChanged(event: PageChangedEvent): void {
-    this.page = event.page;
+    this.currentPage = event.page;
+    this.getallparpagedepartement(this.currentPage)
   }
 
 

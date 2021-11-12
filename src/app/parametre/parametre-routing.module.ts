@@ -35,7 +35,7 @@ const routes: Routes = [
 
      {path: 'liste-departement', component:ListeDepartementComponent},
      {path: 'creer-departement', component:CreerDepartementComponent},
-     {path: 'editer-departement', component: EditerDepartementComponent},
+     {path: 'editer-departement/:code', component: EditerDepartementComponent},
      
 
      {path:'blank-parametre', component:BlankParametreComponent}

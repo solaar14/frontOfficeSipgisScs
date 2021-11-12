@@ -1,4 +1,3 @@
-import { District } from "./district";
 import { Region } from "./region";
 import { Zone} from './zone';
 
@@ -9,6 +8,6 @@ export interface Departement {
         longitude_departement: number
         latitude_departement: number; 
         region :  Region ;
-      
+        zone: Zone;
 
 }

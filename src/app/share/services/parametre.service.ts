@@ -54,6 +54,7 @@ export class ParametreService {
   getAllDistricts(): Observable<District[]>{
   return this.http.get<District[]>(this._url + '/districts/all');
   }
+
   getAllPageDistricts(current_page: number): Observable<District[]>{
     return this.http.get<District[]>(this._url + '/districts/all/page?pagenumber='+  current_page );
     }
@@ -95,8 +96,6 @@ export class ParametreService {
 
 
 
-
-
   //#region ---- // services region -----
 
       getAllRegions(): Observable<Region[]>{
@@ -116,10 +115,24 @@ export class ParametreService {
   //#endregion
 
 
-
-
    
   //#region ---- // services departement -----
+
+
+  postDepartement(newDepartement : any){
+    let httpHeader = new HttpHeaders();
+    httpHeader.append('Content-Type','application/json; charset=utf-8');
+    httpHeader.append('Transfer-Encoding','chunked');    
+    return this.http.post(this._url + '/departements/add/', newDepartement, {headers:httpHeader} );
+   }
+
+
+   updateDepartement(newdepartement : Departement,code_deparetement: string){
+    return this.http.put<District>(this._url + '/departements/update/' + code_deparetement, newdepartement )
+  }
+ 
+
+
 
    getAllDepatrtements(){
      return this.http.get<Departement[]>(this._url + '/departements/all')
@@ -133,6 +146,23 @@ export class ParametreService {
     return this.http.get<Departement[]>(this._url + '/departements/all/zones/' + code_zone );
   }
 
+  getAllPageDepartements(current_page: number): Observable<Departement[]>{
+    return this.http.get<Departement[]>(this._url + '/departements/all/page?pagenumber='+  current_page );
+  }
+
+  getOneDepartement(code_departement : string){
+    return this.http.get<Departement>(this._url + '/departements/one/' + code_departement );
+  }
+  
+  deletedDepartement(code_departement : string){
+    let httpHeader = new HttpHeaders();
+    httpHeader.append('Content-Type','application/json; charset=utf-8');
+    httpHeader.append('Transfer-Encoding','chunked');
+    return this.http.delete(this._url + '/departements/one/' + code_departement, {headers:httpHeader})
+
+   }
+
+ 
 
   //#endregion
 
