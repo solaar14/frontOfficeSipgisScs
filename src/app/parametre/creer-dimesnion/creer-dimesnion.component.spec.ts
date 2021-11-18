@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditerRegionComponent } from './editer-region.component';
+import { CreerDimesnionComponent } from './creer-dimesnion.component';
 
-describe('EditerRegionComponent', () => {
-  let component: EditerRegionComponent;
-  let fixture: ComponentFixture<EditerRegionComponent>;
+describe('CreerDimesnionComponent', () => {
+  let component: CreerDimesnionComponent;
+  let fixture: ComponentFixture<CreerDimesnionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditerRegionComponent ]
+      declarations: [ CreerDimesnionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditerRegionComponent);
+    fixture = TestBed.createComponent(CreerDimesnionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

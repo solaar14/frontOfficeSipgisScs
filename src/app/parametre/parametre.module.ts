@@ -21,6 +21,12 @@ import { ListeRegionComponent } from './liste-region/liste-region.component';
 import { CreerRegionComponent } from './creer-region/creer-region.component';
 import { EditerRegionComponent } from './editer-region/editer-region.component';
 import { BlankParametreComponent } from './blank-parametre/blank-parametre.component';
+import { ListeDimesnionComponent } from './liste-dimesnion/liste-dimesnion.component';
+import { CreerDimesnionComponent } from './creer-dimesnion/creer-dimesnion.component';
+import { EditerDimesnionComponent } from './editer-dimesnion/editer-dimesnion.component';
+import { ListeSousPrefectureComponent } from './liste-sous-prefecture/liste-sous-prefecture.component';
+import { CreerSousPrefectureComponent } from './creer-sous-prefecture/creer-sous-prefecture.component';
+import { EditerSousPrefectureComponent } from './editer-sous-prefecture/editer-sous-prefecture.component';
 
 
 @NgModule({
@@ -38,7 +44,13 @@ import { BlankParametreComponent } from './blank-parametre/blank-parametre.compo
     ListeRegionComponent,
     CreerRegionComponent,
     EditerRegionComponent,
-    BlankParametreComponent
+    BlankParametreComponent,
+    ListeDimesnionComponent,
+    CreerDimesnionComponent,
+    EditerDimesnionComponent,
+    ListeSousPrefectureComponent,
+    CreerSousPrefectureComponent,
+    EditerSousPrefectureComponent
   ],
   imports: [
     CommonModule,

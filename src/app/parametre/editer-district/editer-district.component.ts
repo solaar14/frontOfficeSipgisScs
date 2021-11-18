@@ -64,7 +64,7 @@ afficherDistrict(){
         'libelle_district': response.libelle_district,
         'longitude_district':response.longitude_district,
         'latitude_district': response.latitude_district,
-        'code_zone': response.zone.code_zone
+        'code_zone': response.zone ? response.zone.code_zone : ''
         })
 
      

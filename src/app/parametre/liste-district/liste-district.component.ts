@@ -23,7 +23,6 @@ export class ListeDistrictComponent implements OnInit {
   public code_zone : string = "";
 
   public currentPage: number = 1;
-
   public totalpage : number = 0;
 
 
@@ -133,8 +132,10 @@ export class ListeDistrictComponent implements OnInit {
   
 
   refeshComponent(){
+
     this.route.navigateByUrl('/parametre/blank-parametre', { skipLocationChange: true })
     .then(() => { this.route.navigate(['/parametre/liste-district']); });
+  
   }
 
 

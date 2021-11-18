@@ -21,6 +21,9 @@
     
           <!-- Sidebar Menu -->
           <nav class="mt-2">
+
+
+
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->        
@@ -52,6 +55,7 @@
                </ul>               
                 
               </li>
+
               <li class="nav-header">PARAMETRES</li>
 
               <li class="nav-item  has-treeview">                
@@ -126,6 +130,61 @@
                 </ul>               
                 
               </li>
+
+
+              <li class="nav-item  has-treeview">                
+                <a href="#" class="nav-link">                 
+                  <i class="nav-icon fas fa-copy"></i>
+                  <p>Dictionnaire des faits :
+                    <i class="fas fa-angle-left right"></i>
+                    <span class="badge badge-info right">5</span>
+                  </p>
+                </a>
+  
+                <ul class="nav nav-treeview">
+
+                  <li class="nav-item">
+                    <a  [routerLink]="['/dictionnaire/liste-zone']" routerLinkActive="router-link-active"  class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                         <p>Dimensions</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a  [routerLink]="['/parametre/liste-district']" routerLinkActive="router-link-active"  class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                         <p>Sous-dimensions</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  [routerLink]="['/parametre/liste-region']" routerLinkActive="router-link-active"  class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                         <p>Type de faits</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  [routerLink]="['/parametre/liste-region']" routerLinkActive="router-link-active"  class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                         <p>Faits</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a  [routerLink]="['/parametre/liste-region']" routerLinkActive="router-link-active"  class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                         <p>Déclinaisons</p>
+                    </a>
+                  </li>
+
+    
+
+  
+
+
+
+                </ul>               
+                
+              </li>
+
             </ul>
           </nav>
           <!-- /.sidebar-menu -->

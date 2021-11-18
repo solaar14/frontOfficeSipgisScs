@@ -14,9 +14,9 @@ export class AsidenavbarComponent implements OnInit {
   ngOnInit(): void {
 
     
-    $(document).ready(() => {
+  /*  $(document).ready(() => {
       $('[data-widget="treeview"]').Treeview('init');
-    });
+    });*/
     
   }
 

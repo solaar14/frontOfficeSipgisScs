@@ -1,1 +1,99 @@
-<p>editer-region works!</p>
+<div class="row">
+  
+    <div class="col-11 col-md-11 col-sm-10 col-xl-11">
+
+     <div class="card">
+         <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="card-title">Modifier region</h3> <br>
+                </div>
+
+                <div class="col-6 col-sm-6 ">
+                    <span class="float-right"><a href="" [routerLink]="['/parametre/liste-region']" routerLinkActive="router-link-active" >Liste des régions</a></span> 
+                </div>
+            
+            </div>
+         </div>
+
+    <div class="card-body pad">
+
+        <form [formGroup]="creerRegion" (ngSubmit)="editerRegion()" class="form-group">
+            <div class="row">
+                <div class="col-12 col-sm-12"> 
+
+                    <label for="">code du region</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 uppercase" type="text"  name="code_region" formControlName="code_region">                   
+                    </div> 
+
+
+                    <label for="">Libelle de la region</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 uppercase" type="text"  name="libelle_region" formControlName="libelle_region">                   
+                    </div>  
+                    
+                    <label for="">Longitude region</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 "  type="text" name="longitude_region" formControlName="longitude_region">                   
+                    </div> 
+                    
+                    <div class="input-group mb-2">
+                        <div *ngIf="creerRegion.get('longitude_region')?.errors">
+                            <span class="text-danger">Entrer une valeur numérique</span>
+                        </div>
+                    </div>
+                  
+
+                    <label for="">Latitude region</label> 
+                    <div class="input-group">                         
+                        <input   class="form-control mb-2 "  type="text"  name="latitude_region" formControlName="latitude_region">                   
+                    </div>  
+                    <div class="input-group mb-2">
+                        <div *ngIf="creerRegion.get('latitude_region')?.errors">
+                            <span class="text-danger">Entrer une valeur numérique</span>
+                        </div>
+                    </div>
+
+
+                    <label for="">district de la  region</label> 
+                    <div class="input-group"> 
+                        <select class="form-control mt-2 mb-2" name="code_district" formControlName="code_district">
+                          <option value="" disabled> Choisir une region</option>
+                          <option *ngFor="let district of datadistricts" value={{district.code_district}}>{{district.libelle_district}}</option>
+                        </select> 
+                    </div>  
+
+                        
+                    <label for="">zone de la  region</label> 
+                    <div class="input-group"> 
+                        <select class="form-control mt-2 mb-2" name="code_zone" formControlName="code_zone">
+                          <option value="" disabled> Choisir une zone</option>
+                          <option *ngFor="let zone of datazones" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
+                        </select> 
+                    </div>  
+                    
+                               
+                 
+                </div>
+            </div>
+             
+                <div class="row">
+              
+                    <div class="col-6 col-sm-6">              
+                            <button [disabled]="!creerRegion.valid" type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>                    
+                 </div>
+                  
+              
+                    
+        </form>
+
+    </div>
+
+
+     </div>
+
+    </div>
+
+  </div>

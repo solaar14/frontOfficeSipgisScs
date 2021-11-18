@@ -102,6 +102,10 @@ export class ParametreService {
         return this.http.get<Region[]>(this._url + '/regions/all');
       }
 
+      getOneRegion(code_region: string): Observable<Region>{
+        return this.http.get<Region>(this._url + '/regions/one/' + code_region)
+      }
+
 
       getAllRegionsParDistrict(code_district: string): Observable<Region[]>{
         return this.http.get<Region[]>(this._url + '/regions/all/districts/' + code_district);
@@ -111,6 +115,39 @@ export class ParametreService {
       getAllRegionsParZone(code_zone: string): Observable<Region[]>{
         return this.http.get<Region[]>(this._url + '/regions/all/zones/' + code_zone);
       }
+
+
+      getAllPageRegions(current_page: number): Observable<Region[]>{
+        return this.http.get<Region[]>(this._url + '/regions/all/page?pagenumber='+  current_page );
+      }
+
+
+      postRegion(newRegion : any){
+        let httpHeader = new HttpHeaders();
+        httpHeader.append('Content-Type','application/json; charset=utf-8');
+        httpHeader.append('Transfer-Encoding','chunked');
+        
+        return this.http.post(this._url + '/regions/add/', newRegion, {headers:httpHeader} );
+       }
+
+        
+      updateRegion(newRegion : Region,code_region: string){
+        return this.http.put<Region>(this._url + '/regions/update/' + code_region, newRegion )
+      }
+
+
+      deletedRegion(code_region : string){
+        let httpHeader = new HttpHeaders();
+        httpHeader.append('Content-Type','application/json; charset=utf-8');
+        httpHeader.append('Transfer-Encoding','chunked');
+        
+        return this.http.delete(this._url + '/regions/one/' + code_region, {headers:httpHeader})
+    
+       }
+
+
+
+
 
   //#endregion
 
@@ -130,8 +167,6 @@ export class ParametreService {
    updateDepartement(newdepartement : Departement,code_deparetement: string){
     return this.http.put<District>(this._url + '/departements/update/' + code_deparetement, newdepartement )
   }
- 
-
 
 
    getAllDepatrtements(){

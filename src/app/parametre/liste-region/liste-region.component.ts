@@ -5,6 +5,8 @@ import { Region } from 'src/app/share/models/region';
 import { ParametreService } from 'src/app/share/services/parametre.service';
 import {Zone} from 'src/app/share/models/zone';
 import { District } from 'src/app/share/models/district';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { AlertifyService } from 'src/app/share/services/alertify.service';
 
 @Component({
   selector: 'app-liste-region',
@@ -12,6 +14,11 @@ import { District } from 'src/app/share/models/district';
   styleUrls: ['./liste-region.component.css']
 })
 export class ListeRegionComponent implements OnInit {
+
+
+
+
+
   public code: string = "";
   public modalRef?: BsModalRef;
 
@@ -22,13 +29,20 @@ export class ListeRegionComponent implements OnInit {
   public code_district : string = "";
   public code_zone : string = "";
 
+  public currentPage: number = 1;
+  public totalpage : number = 0;
+
   constructor(
     private route : Router,
     private parametreservice: ParametreService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private alertify: AlertifyService
   ) { }
 
   ngOnInit(): void {
+
+
+
     this.getallregion();
     this.getAlldistrict();
     this.getallzone();
@@ -55,6 +69,8 @@ export class ListeRegionComponent implements OnInit {
     return this.parametreservice.getAllRegions().subscribe(
       (response:Region[])=>{
         this.dataregion = response;
+        this.totalpage = response.length;
+        this.getallparpageregion(this.currentPage);
         })
   }
 
@@ -83,24 +99,62 @@ export class ListeRegionComponent implements OnInit {
         this.dataregion = response;
         })
   }
-  
-   
+     
 
 
-  actualiser() {
-  
+  actualiser() {  
    this.getallregion();
    this.code_district = "";
    this.code_zone = ""; 
   }
+
+  
   
     confirm(){
+      this.parametreservice.deletedRegion(this.code).subscribe(
+        ()=>{
+          this.alertify.success("suppression effectuée avec success !")
+         
+          this.modalRef?.hide();
+          this.refeshComponent();
+        }
+      )
   
     }
   
   
     decline(){
-  
+        this.modalRef?.hide();
+     }
+
+
+
+     pageChanged(event: PageChangedEvent): void {
+      this.currentPage = event.page;  
+      this.getallparpageregion(this.currentPage)
+      
     }
+
+
+    getallparpageregion(index: number) {
+    return this.parametreservice.getAllPageRegions(index).subscribe(
+      (response: Region[])=>{
+
+        this.dataregion = response;
+
+      }
+    )
+  }
+
+
+  refeshComponent(){
+
+    this.route.navigateByUrl('/parametre/blank-parametre', { skipLocationChange: true })
+    .then(() => { this.route.navigate(['/parametre/liste-region']); });
+
+  }
+
+
+
   
 }
