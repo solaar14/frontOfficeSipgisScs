@@ -5,6 +5,7 @@ import { Departement } from '../models/departement';
 import { District } from '../models/district';
 import { Region } from '../models/region';
 import { Zone } from '../models/zone';
+import { SousPrefecture } from '../models/sous-prefecture';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ParametreService {
   constructor( private http:HttpClient) { }
 
 
-   //#region  ---- // services zone // -----
+//#region  ---- // services zone // -----
 
    getAllZones() : Observable<Zone[]>{
     return this.http.get<Zone[]>(this._url + '/zones/all');
@@ -44,10 +45,6 @@ export class ParametreService {
 
    
    //#endregion
-
-
-
-
 
 
 //#region ---- // services district -----
@@ -80,7 +77,6 @@ export class ParametreService {
     return this.http.post(this._url + '/districts/add/', newDistrict, {headers:httpHeader} );
    }
 
-
    deletedDistrict(code_district : string){
     let httpHeader = new HttpHeaders();
     httpHeader.append('Content-Type','application/json; charset=utf-8');
@@ -89,14 +85,11 @@ export class ParametreService {
 
    }
 
-
-
    
   //#endregion
 
 
-
-  //#region ---- // services region -----
+//#region ---- // services region -----
 
       getAllRegions(): Observable<Region[]>{
         return this.http.get<Region[]>(this._url + '/regions/all');
@@ -105,7 +98,6 @@ export class ParametreService {
       getOneRegion(code_region: string): Observable<Region>{
         return this.http.get<Region>(this._url + '/regions/one/' + code_region)
       }
-
 
       getAllRegionsParDistrict(code_district: string): Observable<Region[]>{
         return this.http.get<Region[]>(this._url + '/regions/all/districts/' + code_district);
@@ -151,9 +143,8 @@ export class ParametreService {
 
   //#endregion
 
-
    
-  //#region ---- // services departement -----
+//#region ---- // services departement -----
 
 
   postDepartement(newDepartement : any){
@@ -202,13 +193,20 @@ export class ParametreService {
   //#endregion
 
 
+//#region ---- // services sous-prefecture -----
+getAllSous_prefectures(): Observable<SousPrefecture[]>{
+  return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all');
+  }
 
+  getOneSous_prefecture(code_sous_pref:string){
+    return this.http.get<SousPrefecture>(this._url + '/Sous_prefectures/one/' + code_sous_pref);
+  }
 
-
-  //#region ---- // services sous-prefecture -----
-
+  getAllPageSous_prefectures(current_page: number): Observable<SousPrefecture[]>{
+    return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all/page?pagenumber='+  current_page );
+    }
    
-  //#endregion
+//#endregion
 
 
 
