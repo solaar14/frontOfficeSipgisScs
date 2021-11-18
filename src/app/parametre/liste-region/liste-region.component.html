@@ -73,7 +73,8 @@
                   <td>{{region.libelle_region}}</td>  
                   <td>{{region.longitude_region}}</td>   
                   <td>{{region.latitude_region}}</td>                 
-                   <td>{{region.district.libelle_district}}</td>
+                  <td>{{region.district.libelle_district}}</td>
+                  <td *ngIf="region.zone ? region.zone.libelle_zone: ''">{{region.zone.libelle_zone}}</td>
                    
                            
                   <td>

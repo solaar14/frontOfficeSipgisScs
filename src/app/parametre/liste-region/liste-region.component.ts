@@ -70,7 +70,8 @@ export class ListeRegionComponent implements OnInit {
       (response:Region[])=>{
         this.dataregion = response;
         this.totalpage = response.length;
-        this.getallparpageregion(this.currentPage);
+        this.getallparpageregion(this.currentPage);      
+        
         })
   }
 
@@ -105,7 +106,8 @@ export class ListeRegionComponent implements OnInit {
   actualiser() {  
    this.getallregion();
    this.code_district = "";
-   this.code_zone = ""; 
+  this.code_zone = ""; 
+  this.currentPage = 1;
   }
 
   
@@ -121,6 +123,7 @@ export class ListeRegionComponent implements OnInit {
       )
   
     }
+
   
   
     decline(){

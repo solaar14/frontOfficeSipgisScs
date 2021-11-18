@@ -28,7 +28,7 @@ public code_zone : string = "";
 public code_district: string = "";
 public code_region : string = "";
 
-public currentPage = 4;
+public currentPage = 1;
 public page?: number;
 public totalpage : number = 0;
 
