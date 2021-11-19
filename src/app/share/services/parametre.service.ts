@@ -194,6 +194,7 @@ export class ParametreService {
 
 
 //#region ---- // services sous-prefecture -----
+
 getAllSous_prefectures(): Observable<SousPrefecture[]>{
   return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all');
   }
@@ -205,6 +206,36 @@ getAllSous_prefectures(): Observable<SousPrefecture[]>{
   getAllPageSous_prefectures(current_page: number): Observable<SousPrefecture[]>{
     return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all/page?pagenumber='+  current_page );
     }
+
+
+
+  getAllSousPrefecturesParZone(code_zone: string): Observable<SousPrefecture[]>{
+      return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all/zones/' + code_zone );
+    }
+
+  getAllSousPrefecturesParRegion(code_region: string): Observable<SousPrefecture[]>{
+      return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all/regions/' + code_region );
+    }
+
+  getAllSousPrefecturesParDistrict(code_district: string): Observable<SousPrefecture[]>{
+      return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all/districts/' + code_district );
+    }
+
+  getAllSousPrefecturesParDepartement(code_departement: string): Observable<SousPrefecture[]>{
+      return this.http.get<SousPrefecture[]>(this._url + '/Sous_prefectures/all/departements/' + code_departement );
+    }
+
+
+  deletedSousPrefectures(code_sous_pref : string){
+      let httpHeader = new HttpHeaders();
+      httpHeader.append('Content-Type','application/json; charset=utf-8');
+      httpHeader.append('Transfer-Encoding','chunked');
+      return this.http.delete(this._url + '/Sous_prefectures/one/' + code_sous_pref, {headers:httpHeader})
+  
+     }
+
+
+
    
 //#endregion
 
