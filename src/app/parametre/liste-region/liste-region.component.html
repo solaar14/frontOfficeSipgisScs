@@ -74,7 +74,7 @@
                   <td>{{region.longitude_region}}</td>   
                   <td>{{region.latitude_region}}</td>                 
                   <td>{{region.district.libelle_district}}</td>
-                  <td *ngIf="region.zone ? region.zone.libelle_zone: ''">{{region.zone.libelle_zone}}</td>
+                  <td *ngIf="region.zone ? region.zone.libelle_zone: 'xxx'">{{region.zone.libelle_zone}}</td>
                    
                            
                   <td>
@@ -125,7 +125,7 @@
    
      <div class="row">
        <div class="col-md-12 col-xs-10 col-sm-12">
-         <pagination class="float-right" [totalItems]="totalpage" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+         <pagination class="float-right" [totalItems]="totalpage" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [maxSize]="maxSize"></pagination>
        </div>
      </div>
       

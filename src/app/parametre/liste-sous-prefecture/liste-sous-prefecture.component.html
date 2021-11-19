@@ -1,1 +1,171 @@
-<p>liste-sous-prefecture works!</p>
+
+<div class="row">
+    <div class="col-12 col-md-12 col-sm-12">
+      <label for="">Liste des sous prefectures</label>
+   </div>
+</div>
+     
+<div class="row">     
+       <div class="col-2 col-md-2 col-sm-2">
+       <div class="input-group mb-2">
+         <button class="btn btn-primary" [routerLink]="['/parametre/creer-sous-prefecture']" routerLinkActive="router-link-active" >
+              nouvelle sous prefectures
+         </button>
+       </div>
+     </div>
+</div>
+
+<div class="row ">
+    <div class="col-md-10 col-sm-10">
+     <div class="form-group">
+
+      <div class="input-group">  
+          
+        <label  class="m-2" for="">Rechercher par departement </label>
+        <select class="form-control mt-2" name="departement" [(ngModel)]="code_departement"
+        (change)="getallsous_prefectureParDepartement()">
+        <option value="" disabled> Choisir un departement</option>
+        <option *ngFor="let departement of datadepartements" value={{departement.code_departement}}>{{departement.libelle_departement}}</option>
+        </select>
+
+        <label for=""  class="m-3 mt-2" > -- Ou -- </label>   
+
+            <label  class="m-2" for="">Rechercher par district </label>
+            <select class="form-control mt-2" name="district" [(ngModel)]="code_district"
+            (change)="getallsous_prefectureParDistrict()">
+            <option value="" disabled> Choisir un district</option>
+            <option *ngFor="let district of datadistricts" value={{district.code_district}}>{{district.libelle_district}}</option>
+            </select>
+  
+            <label for=""  class="m-3 mt-2" > -- Ou -- </label>        
+        
+            <label  class="m-2" for="">Rechercher par region </label>
+            <select class="form-control mt-2" name="region" [(ngModel)]="code_region"
+            (change)="getallsous_prefectureParRegion()">
+                <option value="" disabled> Choisir une zone</option>
+                <option *ngFor="let region of dataregions" value={{region.code_region}}>{{region.libelle_region}}</option>
+            </select>
+    
+            <label for=""  class="m-3 mt-2" > -- Ou -- </label>
+
+
+            <label  class="m-2" for="">Rechercher par zone </label>
+            <select class="form-control mt-2" name="zone" [(ngModel)]="code_zone"
+            (change)="getallsous_prefectureParZone()">
+                <option value="" disabled> Choisir une zone</option>
+                <option *ngFor="let zone of datazones" value={{zone.code_zone}}>{{zone.libelle_zone}}</option>
+            </select>
+
+
+
+
+     
+        <button class="btn btn-success m-2" (click) = "actualiser()"><i class="fas fa-sync-alt"></i></button>
+
+      </div>
+   
+     </div>    
+     
+    </div>
+</div>
+   
+<div class="row">
+  
+     <div class=" col-10 col-md-10 col-sm-10">
+       <div class="table-responsive">
+
+        <table  class="table table-hover table-sm">
+          <thead class="thead-dark ">
+            <tr>
+              <th scope="col">Code .</th>
+              <th scope="col">Libellé</th>  
+              <th scope="col">Longitude</th>  
+              <th scope="col">Latitude</th> 
+              <th scope="col">departement</th>   
+              <th scope="col">district</th>
+              <th scope="col">region</th>             
+              <th scope="col">zone</th>             
+              <th scope="col"></th>  
+                            
+            </tr>
+          </thead>
+
+          <tbody>  
+              <tr  *ngFor="let sous_prefecture of datasous_prefectures">               
+                  <td><span>{{sous_prefecture.code_sous_pref}}</span></td>                  
+                  <td >{{sous_prefecture.libelle_sous_prefecture}}</td>  
+                  <td >{{sous_prefecture.longitude_sous_prefecture}}</td>   
+                  <td>{{sous_prefecture.latitude_sous_prefecture}}</td>   
+                  <td *ngIf="sous_prefecture.departement">{{sous_prefecture.departement.libelle_departement}}</td>                      
+                  <td *ngIf="sous_prefecture.district">{{sous_prefecture.district.libelle_district}}</td>
+                  <td *ngIf="sous_prefecture.region">{{sous_prefecture.region.libelle_region}}</td>                
+                  <td *ngIf="sous_prefecture.zone">{{sous_prefecture.zone.libelle_zone}}</td>            
+                  <td colspan="4">
+                      <tr class="float-right bg-transparent"> 
+                        <td class="liste"> 
+                          <button type="submit" [routerLink]="['/parametre/editer-sous-prefecture', sous_prefecture.code_sous_pref]"
+                          routerLinkActive="router-link-active"
+                          class="btn btn-success btn-xs">
+                          <i class="fas fa-edit"></i> 
+                        </button>
+                        </td>
+                       <td class="liste">
+                          <button type="button" 
+                            routerLinkActive="router-link-active"  
+                            class="btn btn-danger btn-xs"  (click)="openModal(templatesup,sous_prefecture.code_sous_pref)">
+                          <i class="fas fa-trash"></i>
+                          </button> 
+                        </td>
+                      </tr>                   
+                  </td> 
+                </tr> 
+                <tr>
+                    <th scope="col">Code .</th>
+                    <th scope="col">Libellé</th>  
+                    <th scope="col">Longitude</th>  
+                    <th scope="col">Latitude</th> 
+                    <th scope="col">district</th>
+                    <th scope="col">region</th>              
+                    <th scope="col">departement</th>   
+                    <th scope="col">zone</th>             
+                    <th scope="col"></th> 
+                          
+                </tr>  
+          </tbody>
+        </table>
+  
+  
+  
+     
+       <ng-template #templatesup>
+            <div class="modal-body text-center">
+              <p>Voulez-vous supprimer la zone avec pour <b>code</b> : <span class="text-info">{{code}}</span> </p>
+              <button type="button" class="btn btn-default" (click)="confirm()">Oui</button>
+              <button type="button" class="btn btn-primary" (click)="decline()">Non</button>
+            </div>
+        </ng-template>
+       </div>
+     </div>
+  
+</div>
+
+
+   
+<div class="row">
+    <div class=" offset-6 col-md-4 col-sm-4 col-xl-4">
+   
+     <div class="row">
+       <div class="col-12 col-md-12 col-sm-12">
+         <pagination *ngIf="totalpage > 0" class="float-right" [totalItems]="totalpage"  [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [maxSize]="maxSize"></pagination>
+       </div>
+     </div>
+      
+      <!--   <pre class="card card-block card-header mb-3">
+       Page changed to: {{page}}
+     </pre> -->
+  
+  
+   </div>
+</div>
+
+  

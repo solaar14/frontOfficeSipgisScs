@@ -97,10 +97,6 @@ export class ListeDistrictComponent implements OnInit {
   }
 
 
-
-
-
-
   confirm(){
     this.parametreservice.deletedDistrict(this.code).subscribe(
       ()=>{
@@ -132,7 +128,6 @@ export class ListeDistrictComponent implements OnInit {
   
 
   refeshComponent(){
-
     this.route.navigateByUrl('/parametre/blank-parametre', { skipLocationChange: true })
     .then(() => { this.route.navigate(['/parametre/liste-district']); });
   

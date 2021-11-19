@@ -141,7 +141,7 @@
    
      <div class="row">
        <div class="col-md-12 col-xs-10 col-sm-12">
-         <pagination *ngIf="totalpage > 0" class="float-right" [totalItems]="totalpage" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+         <pagination *ngIf="totalpage > 0" class="float-right" [totalItems]="totalpage" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [maxSize]="maxSize"></pagination>
        </div>
      </div>
       

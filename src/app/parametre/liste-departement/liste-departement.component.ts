@@ -31,6 +31,7 @@ public code_region : string = "";
 public currentPage = 1;
 public page?: number;
 public totalpage : number = 0;
+public maxSize : number = 10;
 
   constructor(
     private route : Router,

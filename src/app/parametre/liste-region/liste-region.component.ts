@@ -31,6 +31,7 @@ export class ListeRegionComponent implements OnInit {
 
   public currentPage: number = 1;
   public totalpage : number = 0;
+  public maxSize : number = 10;
 
   constructor(
     private route : Router,
